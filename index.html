@@ -1,0 +1,768 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Wolforest</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="tailwind.css" rel="stylesheet" type="text/css">
+  <link href="style.css" rel="stylesheet" type="text/css">
+  <link href="base.css" rel="stylesheet" type="text/css">
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
+</head>
+
+<body class="bg-gray-50">
+  <!-- header -->
+  <header class="flex bg-white px-0 lg:px-4 fixed inset-0 shadow-sm  z-10 lg:h-24 h-16">
+    <!-- header mobile -->
+    <div class="lg:hidden flex justify-between items-center w-full">
+      <div class="flex items-center">
+        <img class="h-12 w-12 object-cover" src="./assets/images/logo.png" />
+        <span class="text-xl text-gray-700 font-black font-semibold ">Wolforest</span>
+      </div>
+      <div>
+        <a class="text-center"><span
+            class="far fa-envelope ml-4 bg-gray-100 w-10 leading-10 h-10 text-xl inline-block rounded-full m-auto cursor-pointer "></span></a>
+        <a class="text-center"><span
+            class="far fa-play-circle ml-4 bg-gray-100 w-10 h-10 leading-10 text-xl rounded-full inline-block m-auto cursor-pointer "></span></a>
+        <a class="text-center" onclick="toggleNavigation('search-mobile')"><span
+            class="fas fa-search ml-4 bg-gray-100 w-10 h-10 leading-10 text-xl rounded-full inline-block m-auto cursor-pointer "></span></a>
+        <a class="text-center cursor-pointer" onclick="toggleNavigation('nav')" id="navbar-mobile" href="#"><span
+            class="fas fa-bars ml-4  w-10 h-10 leading-10 text-xl inline-block m-auto"></span></a>
+      </div>
+    </div>
+    <!-- search-mobile -->
+    <div class=" w-full hidden lg:hidden shadow-md absolute bg-white  " id="search-mobile">
+      <input type="text" required name="search"
+        class="w-full relative text-xs py-4 px-4 placeholder-gray-500 bg-gray-200 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-green-400"
+        placeholder="Start typing to search...">
+      <span onclick="closeSearch()"
+        class="top-1/2 right-0 transform  -translate-y-1/2 w-10 h-10 absolute text-gray-700 text-center"><i
+          class="fas fa-times leading-10"></i></span>
+    </div>
+    <div class="hidden lg:flex flex-none w-72 items-center">
+      <img class="h-20 w-20 object-cover" src="./assets/images/logo.png" />
+      <span class="text-3xl text-gray-700 font-black font-semibold ">Wolforest</span>
+    </div>
+    <div class="hidden lg:flex items-center relative mr-4">
+      <input type="text" required name="search"
+        class="w-80 relative pl-9 text-xs py-4 border rounded-full placeholder-gray-500 bg-gray-200 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-green-400"
+        placeholder="Start typing to search...">
+      <span class="ml-3 w-6 h-6 absolute text-gray-400"><i class="fas fa-search"></i></span>
+    </div>
+    <div class="text-gray-400  justify-center items-center hidden xl:flex">
+      <a class="text-center"><span
+          class="cursor-pointer fas fa-home ml-4 w-10 leading-10 h-10 text-xl inline-block rounded-full m-auto text-green-500 bg-green-200"></span></a>
+      <a class="text-center"><span
+          class="cursor-pointer fas fa-bolt ml-4 bg-gray-100 w-10 h-10 leading-10 text-xl rounded-full inline-block m-auto"></span></a>
+      <a class="text-center"><span
+          class="cursor-pointer fas fa-video ml-4 bg-gray-100 w-10 h-10 leading-10 text-xl rounded-full inline-block m-auto"></span></a>
+      <a class="text-center"><span
+          class="cursor-pointer fas fa-user ml-4 bg-gray-100 w-10 h-10 leading-10 text-xl rounded-full inline-block m-auto"></span></a>
+      <a class="text-center"><span
+          class="cursor-pointer fas fa-shopping-bag ml-4 bg-gray-100 w-10 h-10 leading-10 text-xl rounded-full inline-block m-auto"></span></a>
+
+    </div>
+    <div class="hidden lg:flex items-center ml-auto">
+      <a href="#" class="relative p-2">
+        <span class="far fa-bell text-green-500 text-3xl"> <span
+            class="h-2 w-2 absolute top-2 bg-red-500 rounded-full"></span></span></a>
+      <a href="#" class="p-2 ml-4"><span class="far fa-envelope text-green-500 text-3xl"></span></a>
+      <a href="#" class="p-2 ml-4"><span class="far fa-moon text-green-500 text-3xl"></span></a>
+      <a href="#" class="p-2 ml-4"><img src="./assets/images/avt3.png"
+          class="far fa-bell w-8 h-8 rounded-full text-green-500 text-xl"></img>
+      </a>
+    </div>
+  </header>
+  <!-- nav left -->
+  <nav
+    class=" fixed mt-0 lg:mt-24 shadow-md lg:shadow-none h-screen  p-0 lg:p-4 w-72 custom-scrollbar hidden z-10 lg:block bg-white lg:bg-transparent overflow-auto scroll-message"
+    id="nav">
+    <div class="bg-white shadow-sm p-4 rounded-lg mb-4 ">
+      <p class="font-bold text-xs mb-4 text-gray-500">New Feeds</p>
+      <div class="w-full mt-3 cursor-pointer text-gray-400 hover:text-green-400">
+        <a class="text-center inline-block"><span
+            class="cursor-pointer fas fa-home bg-gradient-to-r from-green-400 to-blue-500 w-10  h-10 leading-10 text-xl text-white  rounded-full inline-block m-auto"></span>
+          <span class="ml-2 font-medium ">Newsfeed</span>
+        </a>
+      </div>
+      <div class="w-full mt-3  cursor-pointer text-gray-400 hover:text-green-400 ">
+        <a class="text-center inline-block"><span
+            class="cursor-pointer fas fa-medal bg-gradient-to-r from-red-600 to-red-400 w-10  h-10 leading-10 text-xl text-white  rounded-full inline-block m-auto"></span>
+          <span class="ml-2 font-medium">Badges</span>
+        </a>
+      </div>
+      <div class="w-full mt-3  cursor-pointer text-gray-400 hover:text-green-400 ">
+        <a class="text-center inline-block"><span
+            class="cursor-pointer fas fa-globe bg-gradient-to-r from-pink-600 to-pink-400 w-10  h-10 leading-10 text-xl text-white  rounded-full inline-block m-auto"></span>
+          <span class="ml-2 font-medium">Explore Stories</span>
+        </a>
+      </div>
+      <div class="w-full mt-3  cursor-pointer text-gray-400 hover:text-green-400 ">
+        <a class="text-center inline-block"><span
+            class="cursor-pointer fas fa-bolt bg-gradient-to-r from-purple-700 to-purple-400 w-10  h-10 leading-10 text-xl text-white  rounded-full inline-block m-auto"></span>
+          <span class="ml-2 font-medium">Popular Group</span>
+        </a>
+      </div>
+      <div class="w-full mt-3  cursor-pointer text-gray-400 hover:text-green-400 ">
+        <a class="text-center inline-block"><span
+            class="cursor-pointer fas fa-user bg-gradient-to-r from-blue-700 to-blue-400 w-10  h-10 leading-10 text-xl text-white  rounded-full inline-block m-auto"></span>
+          <span class="ml-2 font-medium">Author Profile</span>
+        </a>
+      </div>
+    </div>
+    <div class="bg-white shadow-sm p-4 rounded-lg mb-4 ">
+      <p class="font-bold text-xs mb-4 text-gray-500">More Pages </p>
+      <div class="w-full mt-3  cursor-pointer text-gray-400 hover:text-green-400 relative">
+        <a class="text-center flex items-center"><span
+            class="cursor-pointer far fa-envelope w-10  h-10 leading-10 text-3xl text-green-400 rounded-full inline-block"></span>
+          <span class="ml-2 font-medium left-8">Email Box</span>
+          <span class="absolute right-0 top-1.5 bg-yellow-500 rounded-md text-white px-2 py-1 font-medium">500</span>
+        </a>
+      </div>
+      <div class="w-full mt-3  cursor-pointer text-gray-400 hover:text-green-400 relative">
+        <a class="text-center flex items-center"><span
+            class="cursor-pointer far fa-building w-10  h-10 leading-10 text-3xl text-green-400 rounded-full inline-block"></span>
+          <span class="ml-2 font-medium left-8">Near Hotel</span>
+          <!-- <span class="absolute right-0 top-2 bg-yellow-500 rounded-md text-white px-2 py-1 font-medium">500</span> -->
+        </a>
+      </div>
+      <div class="w-full mt-3  cursor-pointer text-gray-400 hover:text-green-400 relative">
+        <a class="text-center flex items-center"><span
+            class="cursor-pointer fab fa-airbnb w-10  h-10 leading-10 text-3xl text-green-400 rounded-full inline-block"></span>
+          <span class="ml-2 font-medium left-8">Least Event</span>
+          <!-- <span class="absolute right-0 top-2 bg-yellow-500 rounded-md text-white px-2 py-1 font-medium">500</span> -->
+        </a>
+      </div>
+      <div class="w-full mt-3  cursor-pointer text-gray-400 hover:text-green-400 relative">
+        <a class="text-center flex items-center"><span
+            class="cursor-pointer fas fa-chalkboard w-10  h-10 leading-10 text-3xl text-green-400 rounded-full inline-block"></span>
+          <span class="ml-2 font-medium left-8">Live stream</span>
+          <!-- <span class="absolute right-0 top-2 bg-yellow-500 rounded-md text-white px-2 py-1 font-medium">500</span> -->
+        </a>
+      </div>
+
+    </div>
+
+    <div class="bg-white shadow-sm p-4 rounded-lg ">
+      <p class="font-bold text-xs mb-4 text-gray-500">Account</p>
+      <div class="w-full mt-3  cursor-pointer text-gray-400 hover:text-green-400 relative">
+        <a class="text-center flex items-center"><span
+            class="cursor-pointer fas fa-cog w-10  h-10 leading-10 text-2xl text-gray-400"></span>
+          <span class="ml-2 font-medium left-8">Settings</span>
+          <!-- <span class="absolute right-0 top-1.5 bg-yellow-500 rounded-md text-white px-2 py-1 font-medium">500</span> -->
+        </a>
+      </div>
+      <div class="w-full mt-3  cursor-pointer text-gray-400 hover:text-green-400 relative">
+        <a class="text-center flex items-center"><span
+            class="cursor-pointer far fa-chart-bar w-10  h-10 leading-10 text-2xl text-gray-400"></span>
+          <span class="ml-2 font-medium left-8">Analytics</span>
+          <!-- <span class="absolute right-0 top-2 bg-yellow-500 rounded-md text-white px-2 py-1 font-medium">500</span> -->
+        </a>
+      </div>
+      <div class="w-full mt-3  cursor-pointer text-gray-400 hover:text-green-400 relative">
+        <a class="text-center flex items-center"><span
+            class="cursor-pointer fas fa-comment-alt w-10  h-10 leading-10 text-2xl text-gray-400"></span>
+          <span class="ml-2 font-medium left-8">Chat</span>
+          <span class="absolute right-0 top-2 bg-yellow-500 rounded-md text-white px-2 py-1 font-medium">500</span>
+        </a>
+      </div>
+
+    </div>
+
+  </nav>
+  <!-- message chat -->
+  <aside class="fixed mr-4 mt-24 p-4 w-72 right-0 overflow-scroll scroll-message 2xl:block hidden"
+    style="height: calc(100vh - 72px);">
+    <div class="bg-white shadow-sm p-4 rounded-lg">
+      <div class="mb-4">
+        <p class="text-xs font-bold text-gray-400 tracking-widest">CONTACTS</p>
+        <ul class="flex flex-col mt-2">
+          <li class="flex flex-row items-center my-2 w-full">
+            <img class="w-10 h-10 rounded-full object-cover" loading="lazy" alt="Lỗi" src="./assets/images/avt1.jpg">
+            <p class="text-gray-600 text-xs ml-3 mr-2 font-bold truncate">Đặng Hoàng Nguyên</p>
+            <span class="w-2 h-2 rounded-full bg-green-400 ml-auto"></span>
+          </li>
+          <li class="flex flex-row items-center my-2 w-full">
+            <img class="w-10 h-10 rounded-full object-cover" loading="lazy" alt="Lỗi" src="./assets/images/avt2.png">
+            <p class="text-gray-600 text-xs ml-3 mr-2 font-bold truncate">Nguyễn Đăng Định</p>
+            <!-- <span class="w-2 h-2 rounded-full bg-green-400 ml-auto"></span> -->
+            <span class="w-2 h-2 rounded-full bg-red-500 ml-auto"></span>
+          </li>
+          <li class="flex flex-row items-center my-2 w-full">
+            <img class="w-10 h-10 rounded-full object-cover" loading="lazy" alt="Lỗi" src="./assets/images/avt3.png">
+            <p class="text-gray-600 text-xs ml-3 mr-2 font-bold truncate">Trà Tấn Hiệu</p>
+            <span class="w-2 h-2 rounded-full bg-green-400 ml-auto"></span>
+            <!-- <span class="ml-auto text-xs text-gray-300 font-bold whitespace-nowrap">2 min</span> -->
+          </li>
+          <li class="flex flex-row items-center my-2 w-full">
+            <img class="w-10 h-10 rounded-full object-cover" loading="lazy" alt="Lỗi" src="./assets/images/avt4.png">
+            <p class="text-gray-600 text-xs ml-3 mr-2 font-bold truncate">Bùi Phú Ân</p>
+            <span class="w-2 h-2 rounded-full bg-yellow-500 ml-auto"></span>
+            <!-- <span class="ml-auto text-xs text-gray-300 font-bold whitespace-nowrap">2 min</span> -->
+          </li>
+          <li class="flex flex-row items-center my-2 w-full">
+            <img class="w-10 h-10 rounded-full object-cover" loading="lazy" alt="Lỗi" src="./assets/images/avt1.jpg">
+            <p class="text-gray-600 text-xs ml-3 mr-2 font-bold truncate">Nguyễn Minh Phương Phương</p>
+            <!-- <span class="w-2 h-2 rounded-full bg-green-400 ml-auto"></span> -->
+            <span class="ml-auto text-xs text-gray-300 font-bold whitespace-nowrap">2 min</span>
+          </li>
+          <li class="flex flex-row items-center my-2 w-full">
+            <img class="w-10 h-10 rounded-full object-cover" loading="lazy" alt="Lỗi" src="./assets/images/avt5.png">
+            <p class="text-gray-600 text-xs ml-3 mr-2 font-bold truncate">Bùi Nguyễn Ngọc Huy</p>
+            <!-- <span class="w-2 h-2 rounded-full bg-green-400 ml-auto"></span> -->
+            <span class="ml-auto text-xs text-gray-300 font-bold whitespace-nowrap">2 min</span>
+          </li>
+          <li class="flex flex-row items-center my-2 w-full">
+            <img class="w-10 h-10 rounded-full object-cover" loading="lazy" alt="Lỗi" src="./assets/images/avt6.png">
+            <p class="text-gray-600 text-xs ml-3 mr-2 font-bold truncate">Ngô Thanh Tuấn</p>
+            <!-- <span class="w-2 h-2 rounded-full bg-green-400 ml-auto"></span> -->
+            <span class="ml-auto text-xs text-gray-300 font-bold whitespace-nowrap">2 min</span>
+          </li>
+          <li class="flex flex-row items-center my-2 w-full">
+            <img class="w-10 h-10 rounded-full object-cover" loading="lazy" alt="Lỗi" src="./assets/images/avt4.png">
+            <p class="text-gray-600 text-xs ml-3 mr-2 font-bold truncate">Nguyễn Thắng</p>
+            <!-- <span class="w-2 h-2 rounded-full bg-green-400 ml-auto"></span> -->
+            <span class="ml-auto text-xs text-gray-300 font-bold whitespace-nowrap">2 min</span>
+          </li>
+
+        </ul>
+      </div>
+      <div class="mb-4">
+        <p class="text-xs font-bold text-gray-400 tracking-widest">GROUPS</p>
+        <ul class="flex flex-col mt-2 ">
+          <li class="flex flex-row items-center my-2 w-full">
+            <img class="w-10 h-10 rounded-full object-cover" loading="lazy" alt="Lỗi"
+              src="./assets/images/page-ute.png">
+            <p class="text-gray-600 text-xs ml-3 mr-2 font-bold truncate">ToiDev</p>
+            <span class="w-2 h-2 rounded-full bg-green-400 ml-auto"></span>
+          </li>
+          <li class="flex flex-row items-center my-2 w-full">
+            <img class="w-10 h-10 rounded-full object-cover" loading="lazy" alt="Lỗi" src="./assets/images/page-js.png">
+            <p class="text-gray-600 text-xs ml-3 mr-2 font-bold truncate">JS DEV 1</p>
+            <span class="w-2 h-2 rounded-full bg-green-400 ml-auto"></span>
+          </li>
+          <li class="flex flex-row items-center my-2 w-full">
+            <img class="w-10 h-10 rounded-full object-cover" loading="lazy" alt="Lỗi"
+              src="./assets/images/background1.jpg  ">
+            <p class="text-gray-600 text-xs ml-3 mr-2 font-bold truncate">404 + 1</p>
+            <!-- <span class="w-2 h-2 rounded-full bg-green-400 ml-auto"></span> -->
+            <span class="ml-auto text-xs text-gray-300 font-bold whitespace-nowrap">2 min</span>
+          </li>
+        </ul>
+      </div>
+      <div class="mb-4">
+        <p class="text-xs font-bold text-gray-400 tracking-widest">PAGES</p>
+        <ul class="flex flex-col mt-2 ">
+          <li class="flex flex-row items-center my-2 w-full">
+            <img class="w-10 h-10 rounded-full object-cover" loading="lazy" alt="Lỗi"
+              src="./assets/images/page-ute.png">
+            <p class="text-gray-600 text-xs ml-3 mr-2 font-bold truncate">UTE Confession</p>
+            <span class="w-2 h-2 rounded-full bg-green-400 ml-auto"></span>
+          </li>
+          <li class="flex flex-row items-center my-2 w-full">
+            <img class="w-10 h-10 rounded-full object-cover" loading="lazy" alt="Lỗi"
+              src="./assets/images/page-shop.png">
+            <p class="text-gray-600 text-xs ml-3 mr-2 font-bold truncate">Lychee Store</p>
+            <span class="w-2 h-2 rounded-full bg-green-400 ml-auto"></span>
+          </li>
+          <li class="flex flex-row items-center my-2 w-full">
+            <img class="w-10 h-10 rounded-full object-cover" loading="lazy" alt="Lỗi"
+              src="./assets/images/page-tocchien.png">
+            <p class="text-gray-600 text-xs ml-3 mr-2 font-bold truncate">Tốc Chiến FC</p>
+            <!-- <span class="w-2 h-2 rounded-full bg-green-400 ml-auto"></span> -->
+            <span class="ml-auto text-xs text-gray-300 font-bold whitespace-nowrap">2 min</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- posts content-->
+  <main class="pt-24 2xl:px-72 lg:pl-72 pl-0 pr-0\.5">
+    <div class="flex w-full 2xl:w-3/4 xl:w-5/6 mt-4 h-auto mx-auto">
+      <!-- main -> left-layout -->
+      <div class="w-full lg:w-2/3 px-2">
+        <!-- story list -->
+        <div class="w-full parent cursor-move overflow-hidden">
+          <div class="flex w-max select-none parent">
+            <div class="relative rounded-xl w-32 h-52 bg-gray-800 mr-4">
+              <div class="absolute  top-28 w-full overflow-hidden">
+                <div class="w-12 h-12 mx-auto text-center rounded-full bg-white text-4xl text-blue-600 cursor-pointer">+
+                </div>
+                <p class="mt-2 text-center text-white font-bold text-xs truncate">Add story</p>
+              </div>
+            </div>
+            <div class="mr-4 relative rounded-xl w-32 h-52 brightness-90 bg-cover  bg-no-repeat bg-center"
+              style="background-image: url(./assets/images/story1.jpg);">
+              <div class="absolute top-28 w-full overflow-hidden ">
+                <img class="w-12 h-12 mx-auto object-cover rounded-full block border-white border-2"
+                  src="./assets/images/admin.jpg">
+                <p class="mt-2 text-center text-white font-bold text-xs truncate">Nguyễn Đăng Định</p>
+              </div>
+            </div>
+            <div
+              class="mr-4 relative rounded-xl w-32 h-52 backdrop-filter backdrop-opacity-80 bg-cover  bg-no-repeat bg-center"
+              style="background-image: url(./assets/images/banner5.jpg);">
+              <div class="absolute top-28 w-full overflow-hidden ">
+                <img class="w-12 h-12 mx-auto object-cover rounded-full block border-white border-2"
+                  src="./assets/images/admin2.jpg">
+                <p class="mt-2 text-center text-white font-bold text-xs truncate">Lê Thị Trâm Anh</p>
+              </div>
+            </div>
+            <div
+              class="mr-4 relative rounded-xl w-32 h-52 backdrop-filter backdrop-opacity-80 bg-cover  bg-no-repeat bg-center"
+              style="background-image: url(./assets/images/story2.jpg);">
+              <div class="absolute top-28 w-full overflow-hidden ">
+                <img class="w-12 h-12 mx-auto object-cover rounded-full block border-white border-2"
+                  src="./assets/images/admin.jpg">
+                <p class="mt-2 text-center text-white font-bold text-xs truncate">Nguyễn Đăng Định</p>
+              </div>
+            </div>
+            <div
+              class="mr-4 relative rounded-xl w-32 h-52 backdrop-filter backdrop-opacity-80 bg-cover  bg-no-repeat bg-center"
+              style="background-image: url(./assets/images/background1.jpg);">
+              <div class="absolute top-28 w-full overflow-hidden ">
+                <img class="w-12 h-12 mx-auto object-cover rounded-full block border-white border-2"
+                  src="./assets/images/admin.jpg">
+                <p class="mt-2 text-center text-white font-bold text-xs truncate">Nguyễn Đăng Định</p>
+              </div>
+            </div>
+            <div
+              class="mr-4 relative rounded-xl w-32 h-52 backdrop-filter backdrop-opacity-80 bg-cover  bg-no-repeat bg-center"
+              style="background-image: url(./assets/images/story2.jpg);">
+              <div class="absolute top-28 w-full overflow-hidden ">
+                <img class="w-12 h-12 mx-auto object-cover rounded-full block border-white border-2"
+                  src="./assets/images/admin.jpg">
+                <p class="mt-2 text-center text-white font-bold text-xs truncate">Nguyễn Đăng Định</p>
+              </div>
+            </div>
+            <div
+              class="mr-4 relative rounded-xl w-32 h-52 backdrop-filter backdrop-opacity-80 bg-cover  bg-no-repeat bg-center"
+              style="background-image: url(./assets/images/background1.jpg);">
+              <div class="absolute top-28 w-full overflow-hidden ">
+                <img class="w-12 h-12 mx-auto object-cover rounded-full block border-white border-2"
+                  src="./assets/images/admin.jpg">
+                <p class="mt-2 text-center text-white font-bold text-xs truncate">Nguyễn Đăng Định</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- create post -->
+        <div class="p-4 rounded-lg bg-white mt-4 shadow-sm">
+          <span
+            class="cursor-pointer text-center fas fa-pencil-alt  w-10  h-10 leading-10 bg-gray-100 text-xl text-blue-500  rounded-full inline-block m-auto mb-4"></span>
+          <span class="ml-2 font-medium text-gray-400 text-sm ">Create Post</span>
+          <div class="flex border-2 rounded-lg border-gray-200 p-2">
+            <div class="w-12">
+              <img class="w-8 h-8 rounded-full object-cover" src="./assets/images/avt3.png" alt="">
+            </div>
+            <div class="w-full">
+              <textarea rows="4" class="w-full focus:outline-none text-gray-600 text-sm placeholder-opacity-25"
+                placeholder="What's do you mind ?"></textarea>
+            </div>
+          </div>
+          <div class="flex text-gray-600 mt-4">
+            <a class="flex items-center mr-4">
+              <i class="fas fa-video text-red-500 text-xl cursor-pointer"></i>
+              <span class="ml-2 font-medium text-sm leading-3 tracking-wide hidden md:block">Live video</span>
+            </a>
+            <a class="flex items-center mr-4 cursor-pointer">
+              <i class="fas fa-image text-green-500 text-xl"></i>
+              <span class="ml-2 font-medium text-sm leading-3 tracking-wide hidden md:block">Photo/Video</span>
+            </a>
+            <a class="flex items-center">
+              <i class="fas fa-camera text-yellow-500 text-xl cursor-pointer"></i>
+              <span class="ml-2 font-medium leading-3 text-sm tracking-wide hidden md:block">Feeling/Activity</span>
+            </a>
+            <span
+              class="cursor-pointer text-center fas fa-ellipsis-h  w-10  h-10 leading-10 bg-gray-100 text-gray-700 text-xs  rounded-full inline-block ml-auto"></span>
+          </div>
+        </div>
+        <!-- new post  -->
+        <div class="p-4 rounded-lg bg-white mt-4 shadow-sm">
+          <div class="flex items-center mb-4">
+            <img class="w-12 h-12 rounded-full object-cover" src="./assets/images/avt2.png">
+            <div class="text-left text-sm font-bold ml-3">Đăng Định <p class="text-xs font-normal text-gray-400">5
+                minutes ago</p>
+            </div>
+            <span
+              class="cursor-pointer text-center fas fa-ellipsis-h  w-10  h-10 leading-10 bg-gray-100 text-gray-700 text-xs  rounded-full inline-block ml-auto"></span>
+          </div>
+          <div class="text-sm text-gray-400 mb-4">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nulla dolor, ornare at commodo non, feugiat
+            non nisi. Phasellus faucibus mollis pharetra. Proin blandit ac massa sed rhoncus.
+            <a class="text-green-500 inline-block cursor-pointer ml-2 select-none">See more</a>
+          </div>
+          <div class="w-full ">
+            <img class="w-full h-auto object-cover rounded-lg" src="./assets/images/background1.jpg" alt="Lỗi">
+          </div>
+          <div class="flex text-gray-600 mt-4">
+            <a class="flex items-center mr-1">
+              <span
+                class="far fa-thumbs-up text-white text-sm leading-6 text-center cursor-pointer h-6 w-6 rounded-full bg-blue-600"></span>
+            </a>
+            <a class="flex items-center mr-2">
+              <span
+                class="far fa-heart text-white text-sm leading-6 text-center cursor-pointer h-6 w-6 rounded-full bg-red-500"></span>
+            </a>
+            <a class="flex items-center mr-4">
+              <span class="font-medium leading-3 text-sm tracking-tight">2.8k Like</span>
+            </a>
+            <a class="flex items-center font-bold">
+              <i class="far fa-comment cursor-pointer "></i>
+              <span class="ml-2 font-medium text-sm leading-3 tracking-tight">22 Comment</span>
+            </a>
+            <p class="flex items-center ml-auto cursor-pointer ">
+              <span
+                class="fas fa-share-alt  w-10  h-10 leading-10 text-gray-700 text-xl inline-block  text-center"></span>
+              <span class="font-medium text-sm leading-3 tracking-tight">Share</span>
+          </div>
+        </div>
+        <!-- new post  -->
+        <div class="p-4 rounded-lg bg-white mt-4 shadow-sm">
+          <div class="flex items-center mb-4">
+            <img class="w-12 h-12 rounded-full object-cover" src="./assets/images/avt2.png">
+            <div class="text-center text-sm font-bold ml-3">Lê Thị Trâm Anh<p class="text-xs font-normal text-gray-400">
+                22 minutes ago
+              </p>
+            </div>
+            <span
+              class="cursor-pointer text-center fas fa-ellipsis-h  w-10  h-10 leading-10 bg-gray-100 text-gray-700 text-xs  rounded-full inline-block ml-auto"></span>
+          </div>
+          <div class="text-sm text-gray-400 mb-4">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nulla dolor, ornare at commodo non, feugiat
+            non nisi. Phasellus faucibus mollis pharetra. Proin blandit ac massa sed rhoncus.
+            <a class="text-green-500 inline-block cursor-pointer ml-2 select-none">See more</a>
+          </div>
+          <div class="flex text-gray-600 mt-4">
+            <a class="flex items-center mr-1">
+              <span
+                class="far fa-thumbs-up text-white text-sm leading-6 text-center cursor-pointer h-6 w-6 rounded-full bg-blue-600"></span>
+            </a>
+            <a class="flex items-center mr-2">
+              <span
+                class="far fa-heart text-white text-sm leading-6 text-center cursor-pointer h-6 w-6 rounded-full bg-red-500"></span>
+            </a>
+            <a class="flex items-center mr-4">
+              <span class="font-medium leading-3 text-sm tracking-tight">111 Like</span>
+            </a>
+            <a class="flex items-center font-bold">
+              <i class="far fa-comment cursor-pointer "></i>
+              <span class="ml-2 font-medium text-sm leading-3 tracking-tight">10 Comment</span>
+            </a>
+            <p class="flex items-center ml-auto cursor-pointer ">
+              <span
+                class="fas fa-share-alt  w-10  h-10 leading-10 text-gray-700 text-xl inline-block  text-center"></span>
+              <span class="font-medium text-sm leading-3 tracking-tight">Share</span>
+          </div>
+        </div>
+
+        <div class="mt-2 w-full cursor-move overflow-hidden parent">
+          <div class="flex w-max select-none parent">
+            <div class="flex flex-col h-12 bg-white w-52 h-56 rounded-2xl mr-4 bg-white">
+              <div class="h-2/5 bg-cover rounded-t-xl" style="background-image: url(./assets/images/background1.jpg);">
+              </div>
+              <div class="h-3/5 relative">
+                <img class="relative h-16 w-16 rounded-full border-4 border-white -top-10 block mx-auto object-cover"
+                  src="./assets/images/avt4.png" alt="">
+                <div class="-mt-8 overflow-hidden">
+                  <div class="text-center text-sm font-bold ml-3">Trần Dần<p class="text-xs font-normal text-gray-500">
+                      12 mutual friends
+                    </p>
+                  </div>
+                  <button class="mx-auto block bg-red-500 rounded-md font-bold text-white py-1 px-4 mt-3">Live</button>
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-col h-12 bg-white w-52 h-56 rounded-2xl mr-4 bg-white">
+              <div class="h-2/5 bg-cover rounded-t-xl" style="background-image: url(./assets/images/background1.jpg);">
+              </div>
+              <div class="h-3/5 relative">
+                <img class="relative h-16 w-16 rounded-full border-4 border-white -top-10 block mx-auto object-cover"
+                  src="./assets/images/avt5.png" alt="">
+                <div class="-mt-8 overflow-hidden">
+                  <div class="text-center text-sm font-bold ml-3">Nguyễn Mai Phương<p
+                      class="text-xs font-normal text-gray-500">12 mutual friends
+                    </p>
+                  </div>
+                  <button class="mx-auto block bg-red-500 rounded-md font-bold text-white py-1 px-4 mt-3">Live</button>
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-col h-12 bg-white w-52 h-56 rounded-2xl mr-4 bg-white">
+              <div class="h-2/5 bg-cover rounded-t-xl" style="background-image: url(./assets/images/background1.jpg);">
+              </div>
+              <div class="h-3/5 relative">
+                <img class="relative h-16 w-16 rounded-full border-4 border-white -top-10 block mx-auto object-cover"
+                  src="./assets/images/avt6.png" alt="">
+                <div class="-mt-8 overflow-hidden">
+                  <div class="text-center text-sm font-bold ml-3">Trà Tấn Hiệu<p
+                      class="text-xs font-normal text-gray-500">12 mutual friends
+                    </p>
+                  </div>
+                  <button class="mx-auto block bg-red-500 rounded-md font-bold text-white py-1 px-4 mt-3">Live</button>
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-col h-12 bg-white w-52 h-56 rounded-2xl mr-4 bg-white">
+              <div class="h-2/5 bg-cover rounded-t-xl" style="background-image: url(./assets/images/background1.jpg);">
+              </div>
+              <div class="h-3/5 relative">
+                <img class="relative h-16 w-16 rounded-full border-4 border-white -top-10 block mx-auto object-cover"
+                  src="https://anhdep123.com/wp-content/uploads/2021/02/hinh-nen-gai-xinh-full-hd-cho-dien-thoai.jpg"
+                  alt="">
+                <div class="-mt-8 overflow-hidden">
+                  <div class="text-center text-sm font-bold ml-3">Trà Tấn Hiệu<p
+                      class="text-xs font-normal text-gray-500">12 mutual friends
+                    </p>
+                  </div>
+                  <button class="mx-auto block bg-red-500 rounded-md font-bold text-white py-1 px-4 mt-3">Live</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="p-4 rounded-lg bg-white mt-4 shadow-sm">
+          <div class="flex items-center mb-4">
+            <img class="w-12 h-12 rounded-full object-cover"
+              src="https://pbs.twimg.com/profile_images/938844896663867392/rkau0MBR_400x400.jpg">
+            <div class="text-left text-sm font-bold ml-3">Yasuo<p class="text-xs font-normal text-gray-400">5 minutes
+                ago</p>
+            </div>
+            <span
+              class="cursor-pointer text-center fas fa-ellipsis-h  w-10  h-10 leading-10 bg-gray-100 text-gray-700 text-xs  rounded-full inline-block ml-auto"></span>
+          </div>
+          <div class="text-sm text-gray-400 mb-4">
+            Cách chơi Yasuo Tốc Chiến: Lên đồ, bảng ngọc, bảng bổ trợ, combo
+            <a class="text-green-500 inline-block cursor-pointer ml-2 select-none">See more</a>
+          </div>
+          <div class="w-full ">
+            <img class="w-full h-auto object-cover rounded-lg"
+              src="https://tocchien.vn/wp-content/uploads/2020/11/cach-len-do-yasuo-toc-chien-chuan.jpg" alt="Lỗi">
+          </div>
+          <div class="flex text-gray-600 mt-4">
+            <a class="flex items-center mr-1">
+              <span
+                class="far fa-thumbs-up text-white text-sm leading-6 text-center cursor-pointer h-6 w-6 rounded-full bg-blue-600"></span>
+            </a>
+            <a class="flex items-center mr-2">
+              <span
+                class="far fa-heart text-white text-sm leading-6 text-center cursor-pointer h-6 w-6 rounded-full bg-red-500"></span>
+            </a>
+            <a class="flex items-center mr-4">
+              <span class="font-medium leading-3 text-sm tracking-tight">10k Like</span>
+            </a>
+            <a class="flex items-center font-bold">
+              <i class="far fa-comment cursor-pointer "></i>
+              <span class="ml-2 font-medium text-sm leading-3 tracking-tight">2 Comment</span>
+            </a>
+            <p class="flex items-center ml-auto cursor-pointer ">
+              <span
+                class="fas fa-share-alt  w-10  h-10 leading-10 text-gray-700 text-xl inline-block  text-center"></span>
+              <span class="font-medium text-sm leading-3 tracking-tight">Share</span>
+          </div>
+        </div>
+        <!-- spinner loading -->
+        <div class="bg-white rounded-md mt-4 w-full py-3 shadow-sm">
+          <button class="w-full">
+            <span class="fas fa-spinner fa-pulse text-2xl text-green-500"></span>
+          </button>
+        </div>
+
+      </div>
+      <!-- main -> layout right -->
+      <div class="w-1/3  ml-4 box-border pr-8 mb-12 hidden lg:block" style="min-width: 18rem;">
+        <!-- Friend Request -->
+        <div class="p-4 rounded-lg bg-white shadow-sm w-full mb-4" style="min-width: auto;">
+          <div class="flex justify-between mt-2">
+            <p class="text-sm font-bold">Friend Request</p>
+            <p class="text-xs font-bold text-blue-600 cursor-pointer">See all</p>
+          </div>
+          <div class="mt-6">
+            <div class="mt-6">
+              <div class="flex justify-start">
+                <img class="w-10 h-10 rounded-full object-cover" src="./assets/images/avt4.png">
+                <div class="text-center text-sm font-bold ml-3">Trà Tấn Hiệu<p
+                    class="text-xs font-normal text-gray-500">12 mutual friends
+                  </p>
+                </div>
+              </div>
+              <div class="mt-4 flex items-center flex-grow">
+                <button
+                  class="text-xs bg-gradient-to-r from-green-600 via-green-500 to-green-400 rounded-3xl px-6 py-2 text-white font-medium w-24">Confirm</button>
+                <button class="ml-2 bg-gray-200 text-gray-600 rounded-3xl text-xs px-6 py-2 font-medium w-24 "
+                 >Delete</button>
+              </div>
+            </div>
+            <div class="mt-6">
+              <div class="flex justify-start">
+                <img class="w-10 h-10 rounded-full object-cover" src="./assets/images/avt5.png">
+                <div class="text-center text-xs font-bold ml-3">Ngô Thanh Tuấn<p
+                    class="text-xs font-normal text-gray-500">12 mutual friends
+                  </p>
+                </div>
+              </div>
+              <div class="mt-4 flex items-center flex-grow">
+                <button
+                  class="text-xs bg-gradient-to-r from-green-600 via-green-500 to-green-400 rounded-3xl px-6 py-2 text-white font-medium w-24">Confirm</button>
+                <button class="ml-2 bg-gray-200 text-gray-600 rounded-3xl text-xs px-6 py-2 font-medium  w-24"
+                 >Delete</button>
+              </div>
+            </div>
+            <div class="mt-6">
+              <div class="flex justify-start">
+                <img class="w-10 h-10 rounded-full object-cover" src="./assets/images/avt6.png">
+                <div class="text-center text-xs font-bold ml-3">Bùi Phú Ân<p class="text-xs font-normal text-gray-500">
+                    12 mutual friends
+                  </p>
+                </div>
+              </div>
+              <div class="mt-4 flex items-center flex-grow">
+                <button
+                  class="text-xs bg-gradient-to-r from-green-600 via-green-500 to-green-400 rounded-3xl px-6 py-2 text-white font-medium w-24">Confirm</button>
+                <button class="ml-2 bg-gray-200 text-gray-600 rounded-3xl text-xs px-6 py-2 font-medium w-24 "
+                 >Delete</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Confirm Friend -->
+        <div class="p-4 rounded-lg bg-white shadow-sm w-full">
+          <div class="flex justify-between mt-2">
+            <p class="text-sm font-bold">Confirm Friend</p>
+            <p class="text-xs font-bold text-blue-600 cursor-pointer">See all</p>
+          </div>
+          <div class="mt-6">
+            <div class="mt-6 bg-gray-100 rounded-lg p-4 ">
+              <div class="flex items-center ">
+                <img class="w-12 h-12 rounded-full object-cover" src="./assets/images/avt1.jpg">
+                <div class=" text-sm font-bold ml-3 text-left ">Trà Tấn Hiệu<p
+                    class="text-xs font-normal text-gray-500">12 mutual friends
+                  </p>
+                </div>
+                <p class="text-left ml-auto cursor-pointer ">
+                  <span
+                    class="fas fa-chevron-right bg-white rounded-full w-10  h-10 leading-10 text-gray-700 text-sm inline-block text-center"></span>
+                </p>
+              </div>
+
+            </div>
+            <div class="mt-6 bg-gray-100 rounded-lg p-4">
+              <div class="flex justify-start">
+                <img class="w-12 h-12 rounded-full object-cover" src="./assets/images/avt2.png">
+                <div class=" text-sm font-bold ml-3">Ngô Thanh Tuấn<p class="text-xs font-normal text-gray-500">12
+                    mutual friends
+                  </p>
+                </div>
+                <p class="text-left ml-auto cursor-pointer ">
+                  <span
+                    class="fas fa-chevron-right bg-white rounded-full w-10  h-10 leading-10 text-gray-700 text-sm inline-block text-center"></span>
+                </p>
+              </div>
+
+            </div>
+            <div class="mt-6 bg-gray-100 rounded-lg p-4">
+              <div class="flex justify-start">
+                <img class="w-12 h-12 rounded-full object-cover" src="./assets/images/avt3.png">
+                <div class="text-sm font-bold ml-3">Bùi Phú Ân<p class="text-xs font-normal text-gray-500">
+                    12 mutual friends
+                  </p>
+                </div>
+                <p class="text-left ml-auto cursor-pointer ">
+                  <span
+                    class="fas fa-chevron-right bg-white rounded-full w-10  h-10 leading-10 text-gray-700 text-sm inline-block text-center"></span>
+                </p>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <!-- Suggest Page -->
+        <div class="p-4 rounded-lg shadow-sm w-full mt-4 bg-white">
+          <div class="flex justify-between mt-2">
+            <p class="text-sm font-bold">Suggest Page</p>
+            <p class="text-xs font-bold text-blue-600 cursor-pointer">See all</p>
+          </div>
+          <div class="mt-6 rounded-2xl p-2 mb-2">
+            <div class="flex items-center relative" style="padding-top: 80%;"">
+            <img class=" w-full h-full rounded-2xl object-cover absolute inset-0"
+              src="https://onlinecrm.vn/media/articles/30-nguyen-tac-de-cham-soc-khach-hang-tot_uONheDJk2V.png">
+            </div>
+            <button class="mt-2 w-full text-sm bg-gray-200 rounded-3xl px-6 py-3 text-gray-700 font-bold ">
+              <span class="fas fa-external-link-alt text-gray-700 text-sm inline-block text-center mr-1"></span>
+              Like Page</button>
+          </div>
+          <div class="rounded-2xl p-2 ">
+            <div class="flex items-center relative" style="padding-top: 80%;"">
+            <img class=" w-full h-full rounded-2xl object-cover absolute inset-0"
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS695bal2DeusXpF3bpuMCWIfPpyPOxFWjSEt_apzO59oteWuFAehYXoG4G3EwZ44BekIw&usqp=CAU">
+            </div>
+            <button class="mt-2 w-full text-sm bg-gray-200 rounded-3xl px-6 py-3 text-gray-700 font-bold ">
+              <span class="fas fa-external-link-alt text-gray-700 text-sm inline-block text-center mr-1"></span>
+              Like Page</button>
+          </div>
+        </div>
+        <!-- Photo library -->
+        <div class="mt-4 bg-white shadow-xs rounded-2xl p-4">
+          <div class="flex justify-between mt-2">
+            <p class="text-sm font-bold">Photos</p>
+            <p class="text-xs font-bold text-blue-600 cursor-pointer">See all</p>
+          </div>
+          <div class="flex flex-wrap ">
+            <div class="w-1/2 p-1">
+              <img class="w-full h-full rounded-md" src="./assets/images/banner1.jpg" alt="">
+            </div>
+            <div class="w-1/2 p-1">
+              <img class="w-full h-full rounded-md" src="./assets/images/banner2.jpg" alt="">
+            </div>
+            <div class="w-1/2 p-1">
+              <img class="w-full h-full rounded-md" src="./assets/images/background1.jpg" alt="">
+            </div>
+            <div class="w-1/2 p-1">
+              <img class="w-full h-full rounded-md" src="./assets/images/banner4.jpg" alt="">
+            </div>
+            <div class="w-1/2 p-1">
+              <img class="w-full h-full rounded-md" src="./assets/images/banner5.jpg" alt="">
+            </div>
+            <div class="w-1/2 p-1">
+              <img class="w-full h-full rounded-xl" src="./assets/images/banner6.jpg" alt="">
+            </div>
+            <button class="mt-2 w-full text-sm bg-gray-200 rounded-3xl px-6 py-3 text-gray-700 font-bold ">
+              <span class="fas fa-external-link-alt text-gray-700 text-sm inline-block text-center mr-1"></span>
+              More</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    </div>
+  </main>
+  <!-- navigation bottom mobile -->
+  <div class="fixed bottom-0 w-full bg-green-500 p-2 lg:hidden">
+    <div class="flex items-center w-full justify-around text-white">
+      <a class="text-center"><span
+          class="cursor-pointer fas fa-home ml-4 w-10 leading-10 h-10 text-3xl inline-block m-auto "></span></a>
+      <a class="text-center"><span
+          class="fas fa-bolt ml-4 y w-10 h-10 leading-10 text-3xl  inline-block m-auto"></span></a>
+      <a class="text-center"><span
+          class="fas fa-video ml-4 y w-10 h-10 leading-10 text-3xl  inline-block m-auto"></span></a>
+      <a class="text-center"><span
+          class="fas fa-user ml-4 y w-10 h-10 leading-10 text-3xl  inline-block m-auto"></span></a>
+      <a href="#" class="w-10 h-10 "><img class="rounded-full" src="./assets/images/avt3.png">
+      </a>
+
+    </div>
+  </div>
+</body>
+<script src="https://kit.fontawesome.com/da0c86d9e9.js" crossorigin="anonymous"></script>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="main.js">
+
+</script>
+
+</html>
